@@ -1,6 +1,7 @@
 import testModel from "../model/testModel";
 import { Request, Response } from "express";
 import crypto from "crypto";
+import { verifyAccount } from "../Email/Email";
 //create user
 export const createUser = async (req: Request, res: Response) => {
   try {
@@ -14,6 +15,13 @@ export const createUser = async (req: Request, res: Response) => {
       token: getToken,
       OTP: getOtp,
     });
+    verifyAccount(user)
+      .then(() => {
+        console.log("Email sent");
+      })
+      .catch((err) => {
+        console.log("An error occured", err);
+      });
     return res.status(201).json({
       message: "new user created and email sent successfully",
       data: user,

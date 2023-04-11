@@ -6,6 +6,7 @@ interface user {
   password: string;
   token: string;
   OTP: string;
+  isVerified: boolean;
 }
 
 interface Iuser extends user, mongoose.Document {}
