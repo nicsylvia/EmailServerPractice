@@ -27,22 +27,22 @@ export const verifyAccount = async (createUser: any) => {
       service: "gmail",
       auth: {
         type: "OAuth2",
-        user: "sannifortune11@gmail.com",
+        user: "nicsylvia15f@gmail.com",
         clientId: google_id,
         clientSecret: google_secret,
         refreshToken: google_refreshToken,
         // accessToken: getToken?.token!,
         accessToken:
-          "ya29.a0Ael9sCM6y-54u37X6_wzhCYdjdxLdiWWYcRemkB0YnMgfD8trqajSF3-DrKSGK5wLqwO09A7HnK-u8Rcpn_BWMssnzB0Hejm4Aonp5gxRtQAd-7H3NfdowBPS2wJ8OiimP9Y5fUGC9L-2xlcCmsZn5kKp2YHaCgYKAVgSARMSFQF4udJh-FZe-B2AFYR-AF3Vslw1oQ0163",
+          "ya29.a0Ael9sCO5vYm0YwRVUnKkSV3NlCvf-qEF92KSyiqzHIbIZufbNLkksyNjnii3X8X7_UfDtNTR-XvwZoOLa2KXSi2DcE5dBkTEj8BBucRwnV87m54q1t5txswKgpq-mrm6odtDgPxSlg8PDBOSvADHBveUAGtksZUaCgYKAQASARMSFQF4udJhF6IzaDjCsY56UVylZ9NDqg0166",
       },
     });
 
     const mailerOptions = {
-      from: "lyfCare <sannifortune11@gmail.com>", // sender address
+      from: "Neche <sannifortune11@gmail.com>", // sender address
       to: createUser?.email, // list of receivers
       subject: "Hello ✔", // Subject line
       text: "Verifiy Your Account", // plain text body
-      html: `<b>Welcome ${createUser?.name} here is your OTP : ${createUser?.otp}
+      html: `<b>Welcome ${createUser?.name} here is your OTP : ${createUser?.OTP}
       <a href="http://localhost/2001/verified" >
       click to verified
       </a>
