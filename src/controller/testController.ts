@@ -44,3 +44,37 @@ export const deleteAllModel = async (req: Request, res: Response) => {
     message: "Deleted All User " + (await testModel.find()).length,
   });
 };
+
+export const VerifyUser = async (req: Request, res: Response) => {
+  try {
+    const { OTP } = req.body;
+    const { userID } = req.params;
+
+    const user = await testModel.findById(userID);
+
+    if (user?.OTP === OTP && user?.token !== "") {
+      const verify = await testModel.findByIdAndUpdate(
+        user?._id,
+        {
+          token: "",
+          isVerified: true,
+        },
+        { new: true }
+      );
+
+      return res.status(200).json({
+        message: "Succesfully verified user",
+        data: verify,
+      });
+    } else {
+      return res.status(400).json({
+        message: "Wrong OTP",
+      });
+    }
+  } catch (error) {
+    return res.status(400).json({
+      message: "An error occured in verifying user",
+      data: error,
+    });
+  }
+};

@@ -1,8 +1,14 @@
 import express from "express";
-import { createUser, deleteAllModel } from "../controller/testController";
+import {
+  VerifyUser,
+  createUser,
+  deleteAllModel,
+} from "../controller/testController";
 
 const router = express.Router();
 
-router.route("/verifyuser").post(createUser);
+router.route("createuser").post(createUser);
 router.route("/deleteallmodel").delete(deleteAllModel);
+router.route("/verifyuser/:userID").patch(VerifyUser);
+
 export default router;

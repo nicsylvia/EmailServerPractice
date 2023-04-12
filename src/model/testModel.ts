@@ -27,6 +27,10 @@ const testSchema = new mongoose.Schema({
   OTP: {
     type: String,
   },
+  isVerified: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const testModel = mongoose.model<Iuser>("testAuth", testSchema);
