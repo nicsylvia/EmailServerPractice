@@ -61,3 +61,48 @@ export const verifyAccount = async (createUser: any) => {
     console.log("An Error occured In verifyAccount");
   }
 };
+
+export const resetUserPassword = async (createUser: any) => {
+  try {
+    oAuth.setCredentials({
+      access_token: google_refreshToken,
+    });
+
+    const getToken = await oAuth.getAccessToken();
+
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        type: "OAuth2",
+        user: "nicsylvia15f@gmail.com",
+        clientId: google_id,
+        clientSecret: google_secret,
+        refreshToken: google_refreshToken,
+        // accessToken: getToken?.token!,
+        accessToken:
+          "ya29.a0Ael9sCO5vYm0YwRVUnKkSV3NlCvf-qEF92KSyiqzHIbIZufbNLkksyNjnii3X8X7_UfDtNTR-XvwZoOLa2KXSi2DcE5dBkTEj8BBucRwnV87m54q1t5txswKgpq-mrm6odtDgPxSlg8PDBOSvADHBveUAGtksZUaCgYKAQASARMSFQF4udJhF6IzaDjCsY56UVylZ9NDqg0166",
+      },
+    });
+
+    const mailerOptions = {
+      from: "Sylvia <nicsylvia15f@gmail.com>", // sender address
+      to: createUser?.email, // list of receivers
+      subject: "Reset your Passwod ✔", // Subject line
+      text: `Reset Password Request`, // plain text body
+      html: `<b>
+        <a heref=localhost:2001/api/changepassword/${createUser?._id}/${createUser?.token}>click here</a>
+        </b>`, // html body
+    };
+
+    transporter
+      .sendMail(mailerOptions)
+      .then(() => {
+        console.log("Reset Password Email not Sent");
+      })
+      .catch((err) => {
+        console.log("Email Not sent in resetUserPassword", err);
+      });
+  } catch (error) {
+    console.log("An Error occured In resetUserPassword");
+  }
+};

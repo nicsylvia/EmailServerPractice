@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  ResetPassword,
   VerifyUser,
   createUser,
   deleteAllModel,
@@ -10,5 +11,6 @@ const router = express.Router();
 router.route("createuser").post(createUser);
 router.route("/deleteallmodel").delete(deleteAllModel);
 router.route("/verifyuser/:userID").patch(VerifyUser);
+router.route("/resetpassword").patch(ResetPassword);
 
 export default router;
